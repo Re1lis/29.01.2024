@@ -1,0 +1,544 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/**
+  Нормализация блочной модели
+ */
+ *,
+ *::before,
+ *::after {
+   box-sizing: border-box;
+ }
+ 
+ /**
+   Убираем внутренние отступы слева тегам списков,
+   у которых есть атрибут class
+  */
+ :where(ul, ol):where([class]) {
+   padding-left: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы body и двум другим тегам,
+   у которых есть атрибут class
+  */
+ body,
+ :where(blockquote, figure):where([class]) {
+   margin: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы вертикали нужным тегам,
+   у которых есть атрибут class
+  */
+ :where(
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   p,
+   ul,
+   ol,
+   dl
+ ):where([class]) {
+   margin-block: 0;
+ }
+ 
+ :where(dd[class]) {
+   margin-left: 0;
+ }
+ 
+ :where(fieldset[class]) {
+   margin-left: 0;
+   padding: 0;
+   border: none;
+ }
+ 
+ /**
+   Убираем стандартный маркер маркированному списку,
+   у которого есть атрибут class
+  */
+ :where(ul[class]) {
+   list-style: none;
+ }
+ 
+ /**
+   Обнуляем вертикальные внешние отступы параграфа,
+   объявляем локальную переменную для внешнего отступа вниз,
+   чтобы избежать взаимодействие с более сложным селектором
+  */
+ p {
+   --paragraphMarginBottom: 24px;
+ 
+   margin-block: 0;
+ }
+ 
+ /**
+   Внешний отступ вниз для параграфа без атрибута class,
+   который расположен не последним среди своих соседних элементов
+  */
+ p:where(:not([class]):not(:last-child)) {
+   margin-bottom: var(--paragraphMarginBottom);
+ }
+ 
+ 
+ /**
+   Упрощаем работу с изображениями
+  */
+ img {
+   display: block;
+   max-width: 100%;
+ }
+ 
+ /**
+   Наследуем свойства шрифт для полей ввода
+  */
+ input,
+ textarea,
+ select,
+ button {
+   font: inherit;
+ }
+ 
+ html {
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   height: 100%;
+   /**
+     Плавный скролл
+    */
+   scroll-behavior: smooth;
+ }
+ 
+ body {
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   min-height: 100%;
+   /**
+     Унифицированный интерлиньяж
+    */
+   line-height: 1.5;
+ }
+ 
+ /**
+   Приводим к единому цвету svg-элементы
+  */
+ svg *[fill] { fill: currentColor }
+ svg *[stroke] { stroke: currentColor }
+ 
+ /**
+   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+ svg * {
+   transition-property: fill, stroke;
+ }
+ a{
+    text-decoration: none;
+    color: black;
+ }
+ /**
+   Удаляем все анимации и переходы для людей,
+   которые предпочитают их не использовать
+  */
+ @media (prefers-reduced-motion: reduce) {
+   * {
+     animation-duration: 0.01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: 0.01ms !important;
+     scroll-behavior: auto !important;
+   }
+ }
+
+
+*{
+    font-family: "Open Sans", sans-serif;
+}
+
+.header {
+    padding: 0 250px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 60px;
+
+    .text-logo {
+        color: #69B9FF;
+        font-size: 25px;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 4px;
+        line-height: 25px;
+        margin-top: 11px;
+        text-align: center;
+    }
+
+    .list__head {
+        display: flex;
+        gap: 40px;
+    }
+
+    .button__burger-header  {
+       width: 30px; 
+       height: 3px;
+       background: black;
+       border-radius: 40px;
+       border: none !important;
+       box-shadow: 0 8px 0px black, 0 -8px 0px;
+       display: none;
+    }
+
+    .list__head {
+        padding: 20px 21px;
+
+        .header__menu__item > a{
+            color: #676770;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            font-style: normal;
+            padding: 5px;
+            transition-duration: 0.2s;
+            text-align: center;
+
+            &:hover { 
+                color: #0082F3;
+                background-color: #d0d0d3;
+                border-radius: 20px;
+                box-shadow: inset 0 0 8px black;
+                text-shadow: 0 0 5px white;
+            }
+        }
+    }
+}
+
+.account_this-is-velocity {
+    padding: 0 250px;
+    background-image: url(/images/this\ is\ velocity.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+
+    .titles_buttons {
+        padding: 200px 250px;
+        text-align: center;
+        color: white !important;
+    }
+
+    .title_text {
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 4px;
+        align-items: center;
+        font-size: 59px;
+        text-transform: uppercase;
+        margin-bottom: 110px;
+    }
+
+    .button__containers {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        .button {
+            border-radius: 4px;
+            background: none;
+            border: none !important;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: normal;
+            line-height: 21px;
+            padding: 12px 30px;
+            transition-duration: 0.2s;
+        }
+
+        .sign_up-button {
+            background-color: #69B9FF;
+
+
+            &:hover {
+                box-shadow: 0 0 10px black;
+                border-radius: 10px;
+                transform: scale(1.1);
+            }
+
+            &:active {
+                transform: scale(1);
+            }
+        }
+
+        .learn_more-button  {
+            outline: 1px dashed white;
+
+            &:hover {
+                outline: 1px solid black;
+                border-radius: 10px;
+                transform: scale(1.1);
+                box-shadow: 0px 0px 12px black;
+            }
+
+            &:active {
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+.what_we_do {
+    padding: 0 250px;
+
+    .title-text-disc    {
+        margin-bottom: 60px;
+        margin-top: 60px;
+        text-align: center;
+
+        .title_text_what    {
+            color: #676770;
+            font-weight: 400;
+            font-size: 30px;
+            letter-spacing: 5px;
+            line-height: 36px;
+            font-style: normal;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+        }
+
+        .discript_what-do_text  {
+            color: #8E8E9C;
+            font-weight: 400;
+            font-size: 17px;
+            letter-spacing: 3px;
+            line-height: 20px;
+            font-style: normal;
+        }
+    }
+
+    .doing-cont {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 80px;
+
+        .graphic__design, .awesome__code, .free_template    {
+            text-align: center;
+            width: 300px;
+            padding: 36px 16px 23px 16px;
+            border-radius: 30px;
+            box-shadow: 0px 0px 10px black;
+            transition-duration: 0.2s;
+
+            &:hover {
+                 box-shadow: 0px 0px 20px black;
+                 background: rgb(231, 231, 231);
+                 transform: scale(1.1);
+            }
+        }
+
+        .image_doing_item   {
+            padding: 0 103px;
+            margin-bottom: 19px;
+        }
+
+        .title-item-what-we-do  {
+            text-transform: uppercase;
+            color: #676770;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+            letter-spacing: 7px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+    }
+}
+
+.services   {
+    padding: 80px 250px;
+    background: #192024;
+
+    .title-text-disc-services   {
+        text-align: center;
+        color: white;
+        margin-bottom: 60px;
+
+        .title_text_what-serv   {
+            color: white;
+            font-weight: 400;
+            font-size: 30px;
+            letter-spacing: 5px;
+            line-height: 36px;
+            font-style: normal;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+        }
+
+        .discript_what-do_text-serv {
+            color: #8E8E9C;
+            font-weight: 400;
+            font-size: 17px;
+            letter-spacing: 3px;
+            line-height: 20px;
+            font-style: normal;
+        }
+    }
+
+    .services-items-cont    {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+
+        .service_one   {
+            border: 1px dashed white;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            transition-duration: 0.3s;
+
+            &:hover {
+                box-shadow: 0px 0px 35px rgb(236, 236, 236);;
+            }
+
+            .image_serv    {
+                margin-bottom: 19px;
+                border-radius: 20px;
+                transition-duration: 0.3s;
+            }
+
+            .title-serv {
+                font-weight: 400;
+                font-size: 20px;
+                font-style: normal;
+                letter-spacing: 7px;
+                line-height: 30px;
+                text-transform: uppercase;
+                margin-bottom: 23px;
+            }
+
+            & > p   {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 25px;
+                margin-bottom: 17px;
+            }
+
+            .learn_more-button  {
+            outline: 1px solid white;
+
+            &:hover {
+                outline: 1px solid black;
+                border-radius: 10px;
+                transform: scale(1.1);
+                box-shadow: 0px 0px 12px black;
+            }
+
+            &:active {
+                transform: scale(1);
+            }
+        }
+
+        .button {
+            border-radius: 4px;
+            background: none;
+            border: none !important;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: normal;
+            line-height: 21px;
+            padding: 12px 30px;
+            transition-duration: 0.2s;
+        }
+        }
+    }
+}
+
+.tab__section {
+    padding: 80px 250px;
+
+    .title-text-disc-tab_sec  {
+      margin-bottom: 60px;
+      text-align: center;
+
+      .title_text_what-tab_sec{
+        color: #676770;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-bottom: 17px;
+      }
+
+      .discript_what-do_text-tab_sec  {
+        color: #8E8E9C;
+        font-size: 17px;
+        letter-spacing: 3px;
+        font-weight: 400;
+      }
+    }
+
+    .container_tab_sec  {
+      
+      .buttons_tab_sec  {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 53px;
+
+        .button__tab_sec  {
+          width: 196px;
+          height: 21px;   
+          font-weight: 400;
+          font-size: 16px;
+          letter-spacing: 2px;
+          text-align: center;   
+          border: none !important;
+          color: white;
+          background: #92A0AD;
+          border-radius: 4px;
+          text-transform: uppercase;
+          box-shadow: 0 0 5px black;
+          transition-duration: 0.2s;
+
+          &:focus, &:hover {
+            background: #2E80B6;
+          }
+        }
+      }
+      .image_titles{
+        text-align: center;
+
+        & > img {
+          border-radius: 20px;
+          margin-left: 140px;
+          margin-bottom: 16px;
+          box-shadow: 0px 0px 10px black;
+        }
+
+        .title-some-tit {
+          color: #676770;
+          font-size: 31px;
+          font-weight: 400;
+          font-style: normal;
+          margin-bottom: 14px;
+        }
+
+        & > p {
+          color: #6A859C;
+          font-size: 13px;
+          line-height: 25px;
+          font-weight: 400;
+          letter-spacing: 2px;
+        }
+      }
+    }
+}
